@@ -1,0 +1,34 @@
+---
+import ExperienceItem from "./ExperienceItem.astro";
+
+const EXPERIENCE = [
+  {
+    date: "Atualmente...",
+    title: "Engenheiro de Software | Conta Azul",
+    description:
+      "Como desenvolvedor no time de APIs, meu foco está nas tecnologias Java 8, Spring, AngularJS e Vue. Trabalho no desenvolvimento full-stack, criando componentes back-end eficientes e interfaces interativas responsivas. Contribuo trabalhando com micro-serviços e aplicações monolíticas.",
+  },
+  {
+    date: "Abril 2023 - Dezembro 2023",
+    title: "Analista de desenvolvimento | TOTVS",
+    description:
+      "Desenvolvo novas funcionalidades para o software da Gesplan. Atualmente estou desenvolvendo soluções para o módulo de Budget do produto. Atualmente estou desenvolvendo diversas novas telas, utilizando React junto com TypeScript e estilizações CSS com SASS. Desenvolvo funcionalidades do back-end da aplicação com Java utilizando Spring Boot, Liquibase, Wildfly e Maven.",
+  },
+  {
+    date: "Março 2022 - Março 2023",
+    title: "Desenvolvedor Full-Stack | Neomind",
+    description:
+      "Desenvolvo otimizações e customizações de software a partir de um software e framework próprio chamado de Fusion. Entre os diversos clientes que atuei cabe mencionar a PGM - Procuradoria-Geral do Município de Rio de Janeiro, Portobello e Tuper. Atualmente estou desenvolvendo diversas novas telas para o cliente PGM, utilizando AngularJS1.6 junto com Bootstrap e estilizações CSS customizadas, entre essas telas cabe destacar a criação de Dashboards e de modais customizadas. Desenvolvo o back-end da aplicação com Java (JAX-RS API), desenvolvendo as rotas da API no qual o front-end irá consumir e dar vida aos dados no qual as telas irão exibir para o cliente.",
+  },
+];
+---
+
+<ol class="relative border-s border-gray-200 ml-3">
+  {
+    EXPERIENCE.map((experience) => (
+      <li class="mb-10 ms-4">
+        <ExperienceItem {...experience} />
+      </li>
+    ))
+  }
+</ol>

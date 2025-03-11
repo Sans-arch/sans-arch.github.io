@@ -1,0 +1,98 @@
+---
+import Layout from "@/layouts/Layout.astro";
+
+import AboutMe from "@/components/AboutMe.astro";
+import Badge from "@/components/Badge.astro";
+import BriefcaseIcon from "@/components/icons/Briefcase.astro";
+import CodeIcon from "@/components/icons/Code.astro";
+import Experience from "@/components/Experience.astro";
+import GithubIcon from "@/components/icons/Github.astro";
+import LinkedinIcon from "@/components/icons/Linkedin.astro";
+import MailIcon from "@/components/icons/Mail.astro";
+import ProfileIcon from "@/components/icons/Profile.astro";
+import Projects from "@/components/Projects.astro";
+import SectionContainer from "@/components/SectionContainer.astro";
+import SocialPill from "@/components/SocialPill.astro";
+import profilePic from "../assets/profile.jpeg";
+
+const showWorkBadge = false;
+---
+
+<Layout
+  title="Portfolio de Santiago - Desenvolvedor e Programador Web."
+  description="Contrate o Santiago para criar a sua aplicação web ou mobile. Desenvolvedor Web e Programador. Especialista em criar aplicações únicas"
+>
+  <main class="px-4">
+    <SectionContainer class="py-44 pb-32">
+      <img
+        class="rounded-full size-16 mb-4"
+        src={profilePic.src}
+        alt="Santiago profile picture"
+      />
+      <h1
+        class="text-white text-3l md:text-4xl lg:text-5xl font-bold flex flex-row gap-x-4 pb-6 lg:pb-10"
+      >
+        Olá, sou o Santiago
+        <a
+          href="https://www.linkedin.com/in/santiago-negreira/"
+          target="_blank"
+          rel="noopener"
+          class="flex justify-center items-center hover:scale-105"
+        >
+          {showWorkBadge && <Badge>Disponível para trabalhar</Badge>}
+        </a>
+      </h1>
+      <h2 class="text-xl lg:text-2xl text-wrap max-w-[700px]">
+        <span>+4 anos de experiência.</span>
+        <span class="text-yellow-200/90"
+          >Desenvolvedor web e Engenheiro de Software.</span
+        >
+        <span class="text-green-300/90">Em Curitiba, Brasil.</span>
+        <span class="opacity-85">Especialista em criar aplicações únicas.</span>
+      </h2>
+
+      <nav class="flex gap-4 mt-8 flex-wrap">
+        <SocialPill href="https://www.linkedin.com/in/santiago-negreira/">
+          <LinkedinIcon class="size-4 md:size-6" />
+          LinkedIn
+        </SocialPill>
+        <SocialPill href="https://github.com/Sans-arch">
+          <GithubIcon class="size-4 md:size-6" />
+          Github
+        </SocialPill>
+        <SocialPill
+          href="https://github.com/Sans-arch"
+          id="contact_email"
+          isCopy
+        >
+          <MailIcon class="size-4 md:size-6" />
+          sansanfleitas@gmail.com
+        </SocialPill>
+      </nav>
+    </SectionContainer>
+
+    <SectionContainer id="about">
+      <h2 class="text-3xl font-semibold mb-6 flex gap-x-3 items-center">
+        <ProfileIcon class="size-7" />
+        Sobre mim
+      </h2>
+      <AboutMe />
+    </SectionContainer>
+
+    <SectionContainer id="experience">
+      <h2 class="text-3xl font-semibold mb-6 flex gap-x-3 items-center">
+        <BriefcaseIcon class="size-7" />
+        Experiência laboral
+      </h2>
+      <Experience />
+    </SectionContainer>
+
+    <SectionContainer id="projects">
+      <h2 class="text-3xl font-semibold mb-6 flex gap-x-3 items-center">
+        <CodeIcon class="size-7" />
+        Projetos
+      </h2>
+      <Projects />
+    </SectionContainer>
+  </main>
+</Layout>

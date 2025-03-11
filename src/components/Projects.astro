@@ -1,0 +1,179 @@
+---
+import NextJsIcon from "./icons/NextJs.astro";
+import TailwindIcon from "./icons/Tailwind.astro";
+import ReactIcon from "./icons/React.astro";
+import SpringIcon from "./icons/Spring.astro";
+import JavaIcon from "./icons/Java.astro";
+import GoIcon from "./icons/Go.astro";
+import TypeScriptIcon from "./icons/Typescript.astro";
+import JavaScriptIcon from "./icons/Javascript.astro";
+import ViteIcon from "./icons/Vite.astro";
+import DockerIcon from "./icons/Docker.astro";
+import ExpressIcon from "./icons/Express.astro";
+import HtmlIcon from "./icons/Html.astro";
+import AstroIcon from "./icons/AstroIcon.astro";
+import Project from "./Project.astro";
+import repos from "public/repos.json";
+import javaImage from "../assets/java.png";
+import reactImage from "../assets/react.webp";
+import javascriptImage from "../assets/javascript.png";
+import typescriptImage from "../assets/typescript.jpg";
+import golangImage from "../assets/golang.webp";
+import astroImage from "../assets/astro.webp";
+import htmlcssImage from "../assets/html-css.png";
+import dockerImage from "../assets/docker.png";
+
+const TAGS = {
+  NEXT: {
+    name: "Next.js",
+    class: "bg-black text-white",
+    icon: NextJsIcon,
+  },
+  TAILWIND: {
+    name: "Tailwind CSS",
+    class: "bg-[#003159] text-white",
+    icon: TailwindIcon,
+  },
+  REACT: {
+    name: "React",
+    class: "bg-black text-white",
+    icon: ReactIcon,
+  },
+  TYPESCRIPT: {
+    name: "TypeScript",
+    class: "bg-black text-white",
+    icon: TypeScriptIcon,
+  },
+  JAVASCRIPT: {
+    name: "JavaScript",
+    class: "bg-black text-white",
+    icon: JavaScriptIcon,
+  },
+  SPRING: {
+    name: "Spring",
+    class: "bg-black text-white",
+    icon: SpringIcon,
+  },
+  JAVA: {
+    name: "Java",
+    class: "bg-black text-white",
+    icon: JavaIcon,
+  },
+  VITE: {
+    name: "Vite",
+    class: "bg-black text-white",
+    icon: ViteIcon,
+  },
+  EXPRESS: {
+    name: "Express",
+    class: "bg-black text-white",
+    icon: ExpressIcon,
+  },
+  GO: {
+    name: "Go",
+    class: "bg-black text-white",
+    icon: GoIcon,
+  },
+  ASTRO: {
+    name: "Astro",
+    class: "bg-black text-white",
+    icon: AstroIcon,
+  },
+  HTML: {
+    name: "HTML",
+    class: "bg-black text-white",
+    icon: HtmlIcon,
+  },
+  DOCKER: {
+    name: "Docker",
+    class: "bg-black text-white",
+    icon: DockerIcon,
+  },
+};
+---
+
+<div class="flex flex-col gap-10">
+  {
+    repos
+      .filter((project) => project.topics && project.language)
+      .sort((a, b) => {
+        if (a.language === "Java" && b.language !== "Java") {
+          return -1;
+        }
+        if (a.language !== "Java" && b.language === "Java") {
+          return 1;
+        }
+        const dateA = new Date(a.updated_at || 0).getTime();
+        const dateB = new Date(b.updated_at || 0).getTime();
+        return dateB - dateA;
+      })
+      .map((project: any) => {
+        console.log({
+          language: project.language,
+          topics: project.topics,
+          description: project.description,
+        });
+        const tags = [];
+        if (project.language === "Java") {
+          tags.push(TAGS.JAVA);
+        } else if (project.language === "HTML") {
+          tags.push(TAGS.HTML);
+          project.owner.avatar_url = htmlcssImage.src;
+        } else if (project.language === "Dockerfile") {
+          tags.push(TAGS.DOCKER);
+          project.owner.avatar_url = dockerImage.src;
+        } else if (project.language === "JavaScript") {
+          tags.push(TAGS.JAVASCRIPT);
+          project.owner.avatar_url = javascriptImage.src;
+        } else if (project.language === "TypeScript") {
+          tags.push(TAGS.TYPESCRIPT);
+          project.owner.avatar_url = typescriptImage.src;
+        } else if (project.language === "Go") {
+          tags.push(TAGS.GO);
+          project.owner.avatar_url = golangImage.src;
+        } else if (project.language === "Astro") {
+          tags.push(TAGS.ASTRO);
+          project.owner.avatar_url = astroImage.src;
+        }
+
+        if (project.topics.includes("react")) {
+          tags.push(TAGS.REACT);
+          project.owner.avatar_url = reactImage.src;
+        }
+
+        if (project.topics.includes("nextjs")) {
+          tags.push(TAGS.NEXT);
+        }
+
+        if (project.topics.includes("tailwindcss")) {
+          tags.push(TAGS.TAILWIND);
+        }
+
+        if (project.topics.includes("vitejs")) {
+          tags.push(TAGS.VITE);
+        }
+
+        if (project.topics.includes("spring-boot")) {
+          tags.push(TAGS.SPRING);
+          project.owner.avatar_url = javaImage.src;
+        }
+
+        if (project.topics.includes("express")) {
+          tags.push(TAGS.EXPRESS);
+        }
+
+        return (
+          <Project
+            data={{
+              title: project.name,
+              description: project.description,
+              tags: tags,
+              image: project.owner.avatar_url,
+              link: project.html_url,
+              github: project.html_url,
+            }}
+          />
+        );
+      })
+  }
+</div>

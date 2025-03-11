@@ -1,0 +1,36 @@
+---
+const currentYear = new Date().getFullYear();
+---
+
+<footer
+  class="rounded-lg shadow m-4 bg-black/20 backdrop-blur-lg w-full xl:w-[1120px] mx-auto mb-10"
+>
+  <div
+    class="w-full mx-auto max-w-screen-xl p-4 flex flex-col items-center md:flex-row md:items-center md:justify-between"
+  >
+    <span class="text-sm text-center text-yellow-200/90"
+      >© {currentYear}
+      <a href="https://flowbite.com/" class="hover:underline"
+        >Santiago Negreira</a
+      >. Todos os direitos reservados.
+    </span>
+    <ul
+      class="flex flex-wrap justify-center items-center mt-3 text-sm font-medium text-white/90 sm:mt-0"
+    >
+      <li>
+        <a href="#" class="hover:underline me-4 md:me-6">Inicio</a>
+      </li>
+      <li>
+        <a href="#experience" class="hover:underline me-4 md:me-6"
+          >Experiência</a
+        >
+      </li>
+      <li>
+        <a href="#about" class="hover:underline me-4 md:me-6">Sobre mim</a>
+      </li>
+      <li>
+        <a href="#projects" class="hover:underline me-4 md:me-6">Projetos</a>
+      </li>
+    </ul>
+  </div>
+</footer>
